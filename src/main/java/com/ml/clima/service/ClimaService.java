@@ -1,9 +1,11 @@
 package com.ml.clima.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.ml.clima.utils.CalculadorPosicion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -23,13 +25,21 @@ public class ClimaService {
 	
 	public ResponseDTO calcularClima(Integer anio) {
 		
-//		int diaLimite = anio*365;
-//		int dia = 0;
-//		int contadorPeriodoLluvia = 0;
-//		int contadorPeriodoSequia = 0;
-//		int diaPicoMaximoLluvia = 0;
-//		int condicionesOptimas = 0;
-		
+	int diaLimite = anio*365;
+	int dia = 0;
+	int contadorPeriodoLluvia = 0;
+	int contadorPeriodoSequia = 0;
+	int diaPicoMaximoLluvia = 0;
+	int condicionesOptimas = 0;
+
+		while (dia <= diaLimite){
+			HashMap<String, Float> hm = CalculadorPosicion.calcularPosicion(dia);
+			//TODO armar logica
+
+			dia++;
+		}
+
+
 		ResponseDTO rsp = new ResponseDTO();
 		rsp.setCantidadPeriodoLluvia(2);
 		rsp.setCantidadPeriodoSequia(1);
