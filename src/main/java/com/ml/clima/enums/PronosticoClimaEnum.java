@@ -6,7 +6,6 @@ public enum PronosticoClimaEnum {
     SEQUIA,
     LLUVIA,
     CONDICIONES_OPTIMAS;
-
 }
 
 

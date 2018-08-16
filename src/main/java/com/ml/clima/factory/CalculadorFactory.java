@@ -7,8 +7,8 @@ import com.ml.clima.enums.PlanetaEnum;
 
 public class CalculadorFactory {
 
-    public static float getPosicion(String tipo, Integer dia){
-        float posicion = 0;
+    public static Double[] getPosicion(String tipo, Integer dia){
+        Double[] posicion = null;
         if (tipo.equalsIgnoreCase(PlanetaEnum.BETASOIDE.name())){
             posicion =  new Betasoide().getPosicion(dia);
         }else if(tipo.equalsIgnoreCase(PlanetaEnum.FARENGI.name())){
