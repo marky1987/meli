@@ -41,7 +41,7 @@ public class ClimaService {
 		rsp.setCantidadPeriodoSequia(1);
 		rsp.setDiaPicoMaxLluvia(521);
 		rsp.setPeriodoCondicionesOptimaYPresion(0);
-		
+
 		List<Pronostico> findAll = this.getRepositorty().findAll();
 		rsp.setPeriodoCondicionesOptimaYPresion(findAll.get(0).getDia());
 		return rsp;
