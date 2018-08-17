@@ -23,10 +23,10 @@ public class CalculadorDeClima implements ICalculadorDeClima {
     public void predecirClimaEnProximosDiezAnios(){
         int dia = 1;
         while(dia <= DIAS_EN_DIEZ_ANIOS){
-            HashMap<String, Float[]> hm = CalculadorPosicion.calcularPosicion(dia);
-            Float[] posFarengi = hm.get(PlanetaEnum.FARENGI);
-            Float[] posBetasoide = hm.get(PlanetaEnum.BETASOIDE);
-            Float[] posVulcano = hm.get(PlanetaEnum.VULCANO);
+            HashMap<String, Double[]> hm = CalculadorPosicion.calcularPosicion(dia);
+            Double[] posFarengi = hm.get(PlanetaEnum.FARENGI);
+            Double[] posBetasoide = hm.get(PlanetaEnum.BETASOIDE);
+            Double[] posVulcano = hm.get(PlanetaEnum.VULCANO);
             String clima = this.calcularClimaDelDia(posFarengi, posBetasoide, posVulcano);
             Pronostico pronostico = new Pronostico();
             pronostico.setDia(dia);
@@ -35,7 +35,7 @@ public class CalculadorDeClima implements ICalculadorDeClima {
         }
     }
 
-    private String calcularClimaDelDia(Float[] posFarengi, Float[] posBetasoide, Float[] posVulcano) {
+    private String calcularClimaDelDia(Double[] posFarengi, Double[] posBetasoide, Double[] posVulcano) {
         String clima = "";
 
         if (coordenadasXLineales(posFarengi,posBetasoide,posVulcano) && coordenadasYLineales(posFarengi,posBetasoide,posVulcano)){
@@ -49,15 +49,15 @@ public class CalculadorDeClima implements ICalculadorDeClima {
         return clima;
     }
 
-    private boolean coordenadasXLineales(Float[] posFarengi, Float[] posBetasoide, Float[] posVulcano){
+    private boolean coordenadasXLineales(Double[] posFarengi, Double[] posBetasoide, Double[] posVulcano){
         return posFarengi[0] * 2 == posBetasoide[0] && posBetasoide[0] * 2  == posVulcano[0] ? Boolean.TRUE : Boolean.FALSE;
     }
 
-    private boolean coordenadasYLineales(Float[] posFarengi, Float[] posBetasoide, Float[] posVulcano){
+    private boolean coordenadasYLineales(Double[] posFarengi, Double[] posBetasoide, Double[] posVulcano){
         return posFarengi[1] * 2 == posBetasoide[1] && posBetasoide[1] * 2  == posVulcano[1] ? Boolean.TRUE : Boolean.FALSE;
     }
 
-    private boolean isLinealAlSol(Float[] posFarengi, Float[] posBetasoide, Float[] posVulcano){
+    private boolean isLinealAlSol(Double[] posFarengi, Double[] posBetasoide, Double[] posVulcano){
         double farengi = posFarengi[0]/posFarengi[1];
         double betasoide = posBetasoide[0]/posBetasoide[1];
         double vulcano = posVulcano[0]/posVulcano[1];
