@@ -17,64 +17,12 @@ import java.util.List;
 @Transactional
 public class ClimaService {
 
-	
 	@Autowired
 	private PronosticoRepository repositorty;
 	
 	public ResponseDTO calcularClima(Integer anio) {
-		
-	int diaLimite = anio*365;
-	int dia = 0;
-
-		while (dia <= diaLimite){
-			HashMap<String, Float[]> hm = CalculadorPosicion.calcularPosicion(dia);
-			Float[] posFarengi = hm.get(PlanetaEnum.FARENGI);
-			Float[] posBetasoide = hm.get(PlanetaEnum.BETASOIDE);
-			Float[] posVulcano = hm.get(PlanetaEnum.VULCANO);
-			String clima = this.calcularClimaDelDia(posFarengi, posBetasoide, posVulcano);
-			dia++;
-
-		}
-
-		ResponseDTO rsp = new ResponseDTO();
-		rsp.setCantidadPeriodoLluvia(2);
-		rsp.setCantidadPeriodoSequia(1);
-		rsp.setDiaPicoMaxLluvia(521);
-		rsp.setPeriodoCondicionesOptimaYPresion(0);
-
-		List<Pronostico> findAll = this.getRepositorty().findAll();
-		rsp.setPeriodoCondicionesOptimaYPresion(findAll.get(0).getDia());
-		return rsp;
-	}
-
-	private String calcularClimaDelDia(Float[] posFarengi, Float[] posBetasoide, Float[] posVulcano) {
-		String clima = "";
-		if (coordenadasXLineales(posFarengi,posBetasoide,posVulcano) && coordenadasYLineales(posFarengi,posBetasoide,posVulcano)){
-		//Planetas Alineados con el sol
-			clima = PronosticoClimaEnum.SEQUIA.name();
-		}else if (true) {
-		//Planetas Alineados entre ellos pero no con el sol
-			clima = PronosticoClimaEnum.CONDICIONES_OPTIMAS.name();
-		}else{
-		//De lo contrario si no estan alineados entre ellos es porque si o si forman un triangulo.
-			clima = PronosticoClimaEnum.LLUVIA.name();
-		}
-		return clima;
-	}
-
-
-	private boolean coordenadasXLineales(Float[] posFarengi, Float[] posBetasoide, Float[] posVulcano){
-		if (posFarengi[0] * 2 == posBetasoide[0] && posBetasoide[0] * 2  == posVulcano[0]){
-
-		}
-		return true;
-	}
-
-	private boolean coordenadasYLineales(Float[] posFarengi, Float[] posBetasoide, Float[] posVulcano){
-		if (posFarengi[1] * 2 == posBetasoide[1] && posBetasoide[1] * 2  == posVulcano[1]){
-
-		}
-		return true;
+	//TODO hacer count a la base por cada caso con limit de cantidad de dias por anio
+		return null;
 	}
 
 	public String calcularClimaPorDia(Integer dia) {
