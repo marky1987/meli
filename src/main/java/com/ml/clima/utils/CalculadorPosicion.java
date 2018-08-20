@@ -8,7 +8,6 @@ import java.util.HashMap;
 public final class CalculadorPosicion {
 
     public static HashMap<String, Double[]> calcularPosicion(Integer dia){
-        //TODO implementar logica
         HashMap<String,Double[]> map = new HashMap<String, Double[]>();
         map.put(PlanetaEnum.FARENGI.name(),CalculadorFactory.getPosicion(PlanetaEnum.FARENGI.name(),dia));
         map.put(PlanetaEnum.VULCANO.name(),CalculadorFactory.getPosicion(PlanetaEnum.VULCANO.name(),dia));

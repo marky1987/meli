@@ -26,7 +26,6 @@ public class ClimaRestController {
 		return getService().calcularClimaPorDia(dia);
 	}
 	
-	
 	public ClimaService getService() {
 		return service;
 	}

@@ -24,14 +24,14 @@ public class PronosticoRepositoryImpl implements PronosticoRepositoryCustom {
 	
 	@Override
 	public Pronostico findByDia(Integer dia) {
-		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaBuilder builder = this.getEm().getCriteriaBuilder();
 		CriteriaQuery<Pronostico> cq = builder.createQuery(Pronostico.class);
 		Root<Pronostico> pro = cq.from(Pronostico.class);
 		cq.select(pro);
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		predicates.add(builder.equal(pro.get("dia"),dia));
 		cq.select(pro).where(predicates.toArray(new Predicate[]{}));
-		TypedQuery<Pronostico> query = em.createQuery(cq);
+		TypedQuery<Pronostico> query = this.getEm().createQuery(cq);
 		return query.getSingleResult();
 	}
 
