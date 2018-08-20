@@ -1,7 +1,9 @@
 package com.ml.clima.repository.impl;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.ml.clima.entities.Pronostico;
+import com.ml.clima.enums.PronosticoClimaEnum;
+import com.ml.clima.repository.custom.PronosticoRepositoryCustom;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,18 +12,16 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
-import org.springframework.stereotype.Repository;
-
-import com.ml.clima.entities.Pronostico;
-import com.ml.clima.repository.custom.PronosticoRepositoryCustom;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Repository
 public class PronosticoRepositoryImpl implements PronosticoRepositoryCustom {
 
 	 @PersistenceContext
 	 private EntityManager em;
-	
+
 	@Override
 	public Pronostico findByDia(Integer dia) {
 		CriteriaBuilder builder = this.getEm().getCriteriaBuilder();

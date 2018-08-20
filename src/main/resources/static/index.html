@@ -13,11 +13,7 @@
   </div>
   <div class="card-body">
     <h5 class="card-title">Predecir el clima en los próximos 10 años</h5>
-    <input ng-keyup="validate()" class="form-control" min="1" max="10" ng-model="anio" type="number" placeholder="Ingresar limite de años de predicción..." id="anios" tabindex="1">
-    <div ng-if="diaRequerido"class="alert alert-danger" role="alert" style=" margin-top:  10px; max-width:  32%;">Es necesario ingresar el el límite de año de predicción</div>
-    <br>
-    <buttom ng-disabled="diaRequerido" class="btn btn-primary float-right" ng-click="limpiar()"  tabindex="3">Limpiar</buttom>
-    <buttom ng-disabled="diaRequerido" class="btn btn-primary float-right" ng-click="calcularClima(anio)"  tabindex="2" style="margin-right: 6px;">Calcular</buttom>
+    <buttom ng-disabled="diaRequerido" class="btn btn-primary float-right" ng-click="calcularClima()"  tabindex="1" style="margin-right: 6px;">Calcular</buttom>
   </div>
 </div>
 <div class="container" ng-if="status==200">

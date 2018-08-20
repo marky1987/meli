@@ -6,21 +6,20 @@ import com.ml.clima.enums.PronosticoClimaEnum;
 import com.ml.clima.repository.PronosticoRepository;
 import com.ml.clima.utils.CalculadorPosicion;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
 import java.util.HashMap;
 
-@Transactional
-@Service
-public class CalculadorDeClima implements ICalculadorDeClima {
+@Component
+public class CalculadorDeClima extends Thread {
 
     private final static int DIAS_EN_DIEZ_ANIOS = 3650;
 
     @Autowired
     private PronosticoRepository repository;
 
-    public void predecirClimaEnProximosDiezAnios(){
+    @Override
+    public void run() {
         int dia = 1;
         while(dia <= DIAS_EN_DIEZ_ANIOS){
             HashMap<String, Double[]> hm = CalculadorPosicion.calcularPosicion(dia);
@@ -44,6 +43,7 @@ public class CalculadorDeClima implements ICalculadorDeClima {
             dia++;
         }
     }
+
 
     private String calcularClimaDelDia(Double[] posFarengi, Double[] posBetasoide, Double[] posVulcano) {
         String clima = "";
