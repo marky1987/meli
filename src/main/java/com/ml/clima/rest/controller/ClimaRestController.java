@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import com.ml.clima.dto.ResponseDTO;
 import com.ml.clima.service.ClimaService;
 
+import java.util.HashMap;
+
 @RestController
 public class ClimaRestController {
 
@@ -19,8 +21,11 @@ public class ClimaRestController {
 	}
 
 	@GetMapping(value = "/clima", produces = MediaType.APPLICATION_JSON_VALUE)
-	public String getClimaPorDia(@RequestParam("dia") Integer dia) {
-		return getService().calcularClimaPorDia(dia);
+	public ClimaPorDiaDTO getClimaPorDia(@RequestParam("dia") Integer dia) {
+		ClimaPorDiaDTO dto = new ClimaPorDiaDTO();
+		dto.setDia(dia);
+		dto.setClima(getService().calcularClimaPorDia(dia));
+		return dto;
 	}
 	
 	public ClimaService getService() {
