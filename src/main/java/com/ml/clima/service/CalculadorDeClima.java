@@ -28,13 +28,13 @@ public class CalculadorDeClima extends Thread {
             Double[] posVulcano = hm.get(PlanetaEnum.VULCANO.name());
             String clima = this.calcularClimaDelDia(posFarengi, posBetasoide, posVulcano);
             //Parche por problemas de logica en cuanto a física
-            if (dia%22==0){
-                clima = PronosticoClimaEnum.SEQUIA.name();
-            } else if (dia%10==0){
-                clima = PronosticoClimaEnum.CONDICIONES_OPTIMAS.name();
-            } else {
-                clima = PronosticoClimaEnum.LLUVIA.name();
-            }
+            //if (dia%22==0){
+              //  clima = PronosticoClimaEnum.SEQUIA.name();
+            //} else if (dia%10==0){
+              //  clima = PronosticoClimaEnum.CONDICIONES_OPTIMAS.name();
+            //} else {
+              //  clima = PronosticoClimaEnum.LLUVIA.name();
+            //}
             //PARCHE POR PROBLEMAS DE LOGICA en cuanto a fisica;
             Pronostico pronostico = new Pronostico();
             pronostico.setDia(dia);
@@ -59,16 +59,16 @@ public class CalculadorDeClima extends Thread {
     }
 
     private boolean estanAlineados(Double[] posFarengi, Double[] posBetasoide, Double[] posVulcano){
-        double x = (Math.abs(posVulcano[0]) - Math.abs(posFarengi[0])) / (Math.abs(posBetasoide[0]) - Math.abs(posVulcano[0]));
-        double y = (Math.abs(posVulcano[1]) - Math.abs(posFarengi[1])) / (Math.abs(posBetasoide[1]) - Math.abs(posVulcano[1]));
-        return x == y ? Boolean.TRUE : Boolean.FALSE;
+        double p1 = (posVulcano[1] - posFarengi[1]) / (posVulcano[0] - posFarengi[0]);
+        double p2 = (posBetasoide[1] - posVulcano[1]) / (posBetasoide[0] - posVulcano[0]);
+        return p1 == p2 ? Boolean.TRUE : Boolean.FALSE;
     }
 
     private boolean isLinealAlSol(Double[] posFarengi, Double[] posBetasoide, Double[] posVulcano){
-        double pendiente = (posBetasoide[0] - posFarengi[0]) / (posBetasoide[1] - posFarengi[1]);
+        double pendiente = (posVulcano[1] - posFarengi[1]) / (posVulcano[0] - posFarengi[0]);
         //Significa entonces que la ordenada es 0.
         //Se calcula sobre uno solo porque se entiende que si ya estan alineados entre ellos con que uno ya esta con el sol, todos lo estan
-        return posFarengi[1] == pendiente * posFarengi[0] ? Boolean.TRUE : Boolean.FALSE;
+        return posFarengi[1] - (pendiente * posFarengi[0]) == 0 ? Boolean.TRUE : Boolean.FALSE;
     }
 
     public PronosticoRepository getRepository() {
