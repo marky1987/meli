@@ -27,15 +27,6 @@ public class CalculadorDeClima extends Thread {
             Double[] posBetasoide = hm.get(PlanetaEnum.BETASOIDE.name());
             Double[] posVulcano = hm.get(PlanetaEnum.VULCANO.name());
             String clima = this.calcularClimaDelDia(posFarengi, posBetasoide, posVulcano);
-            //Parche por problemas de logica en cuanto a física
-            //if (dia%22==0){
-              //  clima = PronosticoClimaEnum.SEQUIA.name();
-            //} else if (dia%10==0){
-              //  clima = PronosticoClimaEnum.CONDICIONES_OPTIMAS.name();
-            //} else {
-              //  clima = PronosticoClimaEnum.LLUVIA.name();
-            //}
-            //PARCHE POR PROBLEMAS DE LOGICA en cuanto a fisica;
             Pronostico pronostico = new Pronostico();
             pronostico.setDia(dia);
             pronostico.setDescripcion(clima);
