@@ -15,12 +15,12 @@ public class ClimaRestController {
 	@Autowired
 	private ClimaService service;
 	
-	@GetMapping(value = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/v1/info", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseDTO index() {
 		return getService().calcularClima();
 	}
 
-	@GetMapping(value = "/clima", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/v1/clima", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ClimaPorDiaDTO getClimaPorDia(@RequestParam("dia") Integer dia) {
 		ClimaPorDiaDTO dto = new ClimaPorDiaDTO();
 		dto.setDia(dia);
